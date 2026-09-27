@@ -5,9 +5,9 @@ npm install
 INFRAI_API_KEY=your_key npm start
 ```
 
-You should conclude first that enforcing a monthly hard cap on AI-generated educator plans is straightforward when Infrai provides both the account control and the completion call through one OpenAI-compatible base URL. The why is simple: a separate billing service and inference service would require two auth flows and two error domains, while a single key that governs its own spending path merges them into one policy seam. The same `INFRAI_API_KEY` is deliberately used for the account control and the work being controlled, so one key governs its own spending path.
+This small service sets an account-level monthly hard cap before it asks AI for an educator delivery plan. Infrai supplies both calls through one OpenAI-compatible base URL. The same `INFRAI_API_KEY` is deliberately used for the account control and the work being controlled: one key governs its own spending path.
 
-The payload includes aggregate course counts, deadline pressure, and reporting duty. It skips learner names, messages, and health details. Omitting such fields at ingestion is the reason this fits education as well as healthtech: what never enters cannot leak into a generated report.
+The request carries aggregate course counts, deadline pressure, and the reporting obligation. It does not accept learner names, messages, or health information. That boundary is useful in education for the same reason it matters in healthtech: data omitted at ingestion cannot leak into a generated report.
 
 ## Send the maintainer request
 
